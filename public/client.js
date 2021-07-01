@@ -1,4 +1,9 @@
 const socket = io();
+//Current time stamp
+let d;
+let time;
+let hours;
+let minutes;
 //DOM Elements
 const inputMessage = document.getElementById("input");
 const send = document.getElementById("send_btn");
@@ -8,10 +13,9 @@ do {
   let name = prompt("Please enter your name:");
   user_name = name;
 } while (!user_name);
-
 let typedMessage;
 inputMessage.addEventListener("input", (e) => {
-  typedMessage = e.target.value;
+  typedMessage = e.target.value.trim();
 });
 send.addEventListener("click", () => {
   if (typedMessage === undefined || typedMessage === "") {
@@ -20,35 +24,61 @@ send.addEventListener("click", () => {
     sendMessage(typedMessage);
   }
 });
+//Function to update time
+function updateTime() {
+  d = new Date();
+  let meridian = "AM";
+  hours = d.getHours();
+  minutes = d.getMinutes();
+  if (hours >= 12) {
+    meridian = "PM";
+    if (hours - 12 < 10) {
+      hours = `0${hours - 12}`;
+    } else {
+      hours = `${hours - 12}`;
+    }
+  } else if (hours < 10) {
+    hours = `0${hours}`;
+  }
+  if (minutes < 10) {
+    minutes = `0${minutes}`;
+  }
+  time =
+    hours > 12
+      ? `${hours}:${minutes} ${meridian}`
+      : `${hours}:${minutes} ${meridian}`;
+}
 //Function to send message
 function sendMessage(message) {
+  updateTime();
   let msg = {
-    user: user_name,
+    user: user_name.trim(),
     message: message,
   };
   //Append message to DOM
-  appendMessage(msg, "outgoing");
+  appendMessage(msg, "outgoing", time);
   scrollToBottom();
   //Clear the input field
   inputMessage.value = "";
   typedMessage = "";
   //Send message to server
-  socket.emit("send_message", msg);
+  socket.emit("send_message", msg, time);
 }
 //Function to append message to DOM
-function appendMessage(msg, type) {
+function appendMessage(msg, type, time) {
   let msgDiv = document.createElement("div");
   let username = type === "outgoing" ? "You" : msg.user;
   msgDiv.classList.add("message", type);
   msgDiv.innerHTML = `
   <h3 class="user_name">${username}</h3>
   <p class="msg_content">${msg.message}</p>
+  <h5 class="time">${time}</h5>
   `;
   messageArea.appendChild(msgDiv);
 }
-//Receive message fro  server
-socket.on("receive_message", (data) => {
-  appendMessage(data, "incoming");
+//Receive message from  server
+socket.on("receive_message", (data, time) => {
+  appendMessage(data, "incoming", time);
   scrollToBottom();
 });
 //Event for new user join
