@@ -39,3 +39,7 @@ A real-time chat application made using **NodeJS** and **Socket.io**
 ![Screenshot](https://user-images.githubusercontent.com/80754608/124128206-2ecdf380-da9a-11eb-9199-e4b176755078.png)
 ![Screenshot](https://user-images.githubusercontent.com/80754608/124128211-2fff2080-da9a-11eb-9802-1f949c6a8048.png)
 
+## Video Reference
+
+[Video](https://user-images.githubusercontent.com/80754608/124126657-84090580-da98-11eb-8365-c2c58fa89cf4.mp4)
+
