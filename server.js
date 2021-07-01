@@ -17,8 +17,8 @@ io.on("connection", (socket) => {
     //Let other users know that a new user has joined
     socket.broadcast.emit("user_joined", name);
   });
-  socket.on("send_message", (data) => {
-    socket.broadcast.emit("receive_message", data);
+  socket.on("send_message", (data, time) => {
+    socket.broadcast.emit("receive_message", data, time);
   });
   //Check if user disconnects and let others know
   socket.on("disconnect", () => {
