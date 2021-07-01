@@ -1,5 +1,8 @@
 ## ProChat
 
+![Badge](https://img.shields.io/badge/real--time--chat-application-green)
+![Badge](https://img.shields.io/badge/open--source-%E2%9D%A4-red)
+
 A real-time chat application made using **NodeJS** and **Socket.io**
 
 ## Technology Stack
