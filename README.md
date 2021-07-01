@@ -33,3 +33,9 @@ A real-time chat application made using **NodeJS** and **Socket.io**
 - Make the changes
 - Generate a pull request
 ```
+## Screenshots
+![Screenshot](https://user-images.githubusercontent.com/80754608/124128195-2d043000-da9a-11eb-8ded-2d2b042772df.png)
+![Screenshot](https://user-images.githubusercontent.com/80754608/124128199-2d9cc680-da9a-11eb-9b4c-7ef74a3c7490.png)
+![Screenshot](https://user-images.githubusercontent.com/80754608/124128206-2ecdf380-da9a-11eb-9199-e4b176755078.png)
+![Screenshot](https://user-images.githubusercontent.com/80754608/124128211-2fff2080-da9a-11eb-9802-1f949c6a8048.png)
+
