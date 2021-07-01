@@ -1,4 +1,75 @@
 const socket = io();
-socket.on("new_user_joined", (name) => {
-  console.log(`${name} joined`);
+//DOM Elements
+const inputMessage = document.getElementById("input");
+const send = document.getElementById("send_btn");
+const messageArea = document.querySelector(".message_area");
+let user_name;
+do {
+  let name = prompt("Please enter your name:");
+  user_name = name;
+} while (!user_name);
+
+let typedMessage;
+inputMessage.addEventListener("input", (e) => {
+  typedMessage = e.target.value;
 });
+send.addEventListener("click", () => {
+  if (typedMessage === undefined || typedMessage === "") {
+    alert("Please type a message");
+  } else {
+    sendMessage(typedMessage);
+  }
+});
+//Function to send message
+function sendMessage(message) {
+  let msg = {
+    user: user_name,
+    message: message,
+  };
+  //Append message to DOM
+  appendMessage(msg, "outgoing");
+  scrollToBottom();
+  //Clear the input field
+  inputMessage.value = "";
+  typedMessage = "";
+  //Send message to server
+  socket.emit("send_message", msg);
+}
+//Function to append message to DOM
+function appendMessage(msg, type) {
+  let msgDiv = document.createElement("div");
+  let username = type === "outgoing" ? "You" : msg.user;
+  msgDiv.classList.add("message", type);
+  msgDiv.innerHTML = `
+  <h3 class="user_name">${username}</h3>
+  <p class="msg_content">${msg.message}</p>
+  `;
+  messageArea.appendChild(msgDiv);
+}
+//Receive message fro  server
+socket.on("receive_message", (data) => {
+  appendMessage(data, "incoming");
+  scrollToBottom();
+});
+//Event for new user join
+socket.emit("new_user_joined", user_name);
+//Listening event for new user join
+socket.on("user_joined", (userName) => {
+  let div = document.createElement("div");
+  div.classList.add("common");
+  div.innerHTML = `<p>${userName} has joined the chat</p>`;
+  messageArea.appendChild(div);
+  scrollToBottom();
+});
+//Listening event if user leaves the chat
+socket.on("user_left", (name) => {
+  let div = document.createElement("div");
+  div.classList.add("common");
+  div.innerHTML = `<p>${name} has left the chat</p>`;
+  messageArea.appendChild(div);
+  scrollToBottom();
+});
+//Function to scroll to bottom
+function scrollToBottom() {
+  messageArea.scrollTop = messageArea.scrollHeight;
+}
