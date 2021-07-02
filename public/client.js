@@ -8,6 +8,9 @@ let minutes;
 const inputMessage = document.getElementById("input");
 const send = document.getElementById("send_btn");
 const messageArea = document.querySelector(".message_area");
+window.addEventListener("load", () => {
+  inputMessage.focus();
+});
 let user_name;
 do {
   let name = prompt("Please enter your name:");
@@ -22,6 +25,15 @@ send.addEventListener("click", () => {
     alert("Please type a message");
   } else {
     sendMessage(typedMessage);
+  }
+});
+inputMessage.addEventListener("keypress", (e) => {
+  if (e.key === "Enter") {
+    if (typedMessage === undefined || typedMessage === "") {
+      alert("Please type a message");
+    } else {
+      sendMessage(typedMessage);
+    }
   }
 });
 //Function to update time
