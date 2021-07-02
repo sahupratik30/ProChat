@@ -66,22 +66,35 @@ body {
 .main_container .message_area .common {
   display: flex;
   align-self: center;
+  margin: 10px 0;
 }
 .main_container .message_area .user_name {
-  font-size: 15px;
+  font-size: 12px;
   margin-left: 5px;
 }
 .main_container .message_area .message {
-  width: 50%;
+  width: -webkit-max-content;
+  width: -moz-max-content;
+  width: max-content;
+  max-width: 50%;
   padding: 0 2%;
   margin: 10px 0px;
 }
+.main_container .message_area .message .time {
+  font-size: 9px;
+}
 .main_container .message_area .message.outgoing .time {
+  width: -webkit-max-content;
+  width: -moz-max-content;
+  width: max-content;
   position: absolute;
   bottom: -20px;
   right: 20px;
 }
 .main_container .message_area .message.incoming .time {
+  width: -webkit-max-content;
+  width: -moz-max-content;
+  width: max-content;
   position: absolute;
   bottom: -20px;
   left: 20px;
@@ -186,11 +199,15 @@ body {
     font-size: 25px;
   }
   .main_container .message_area .message {
-    width: 55%;
+    width: -webkit-max-content;
+    width: -moz-max-content;
+    width: max-content;
+    max-width: 55%;
   }
-  .main_container .message_area .message p,
-  .main_container .message_area .message .user_name,
-  .main_container .message_area .message .time {
+  .main_container .message_area .message p {
+    font-size: 14px;
+  }
+  .main_container .message_area .message .user_name {
     font-size: 10px;
   }
   .main_container .message_area .message.outgoing .time {
@@ -202,7 +219,7 @@ body {
     left: 10px;
   }
   .main_container .message_area .common {
-    font-size: 10px;
+    font-size: 14px;
   }
   .main_container .type_section button .fas {
     width: 25px;
@@ -212,6 +229,7 @@ body {
     font-size: 18px;
   }
   .main_container .type_section input {
-    font-size: 10px;
+    font-size: 14px;
+    height: 65%;
   }
 }
