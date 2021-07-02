@@ -43,3 +43,8 @@ A real-time chat application made using **NodeJS** and **Socket.io**
 
 [Video](https://user-images.githubusercontent.com/80754608/124265536-6fd60e80-db53-11eb-8fb7-2115e632f928.mp4)
 
+## Link to view the app
+
+- Link - `https://pro-chat-app.herokuapp.com/`
+- [Visit App](https://pro-chat-app.herokuapp.com/)
+
