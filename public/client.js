@@ -27,10 +27,10 @@ send.addEventListener("click", () => {
 //Function to update time
 function updateTime() {
   d = new Date();
-  let meridian = "AM";
   hours = d.getHours();
   minutes = d.getMinutes();
-  if (hours >= 12) {
+  let meridian = hours === 12 ? "PM" : "AM";
+  if (hours > 12) {
     meridian = "PM";
     if (hours - 12 < 10) {
       hours = `0${hours - 12}`;
