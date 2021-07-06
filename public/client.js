@@ -103,6 +103,16 @@ socket.on("user_joined", (userName) => {
   messageArea.appendChild(div);
   scrollToBottom();
 });
+// Listening event for connected users
+socket.on("connected_users", (names) => {
+  for (let i = 0; i < names.length - 1; i++) {
+    let div = document.createElement("div");
+    div.classList.add("common");
+    div.innerHTML = `<p>${names[i]} is present in the chat</p>`;
+    messageArea.appendChild(div);
+    scrollToBottom();
+  }
+});
 //Listening event if user leaves the chat
 socket.on("user_left", (name) => {
   let div = document.createElement("div");
