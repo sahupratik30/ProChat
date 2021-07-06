@@ -13,7 +13,12 @@ const users = {};
 const io = require("socket.io")(http);
 io.on("connection", (socket) => {
   socket.on("new_user_joined", (name) => {
+    let userNames = [];
     users[socket.id] = name;
+    for (const names in users) {
+      userNames.push(users[names]);
+    }
+    io.in(socket.id).emit("connected_users", userNames);
     //Let other users know that a new user has joined
     socket.broadcast.emit("user_joined", name);
   });
